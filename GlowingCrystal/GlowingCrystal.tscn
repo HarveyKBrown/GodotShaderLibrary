@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmh3kdwjrunl1"]
+
+[ext_resource type="Environment" uid="uid://b6tsi0qey61qf" path="res://GlowingCrystal/BloomEnviroment.tres" id="2_02k7e"]
+[ext_resource type="ArrayMesh" uid="uid://cprkmtsidexbu" path="res://GlowingCrystal/128_CrystalCluster.obj" id="3_qcpsn"]
+[ext_resource type="Material" uid="uid://cqdwiqygg7i7j" path="res://GlowingCrystal/Materials/MTL_Crystal_2.tres" id="4_ts06l"]
+[ext_resource type="Material" uid="uid://cgox5nk2bvia3" path="res://GlowingCrystal/Materials/MTL_Crystal_3.tres" id="5_rln3o"]
+[ext_resource type="Material" uid="uid://b17b1nxfa4vca" path="res://GlowingCrystal/Materials/MTL_Crystal_4.tres" id="6_pr2rb"]
+[ext_resource type="Material" uid="uid://dxgb22g7i5xxn" path="res://GlowingCrystal/Materials/MTL_Crystal_5.tres" id="7_xfl71"]
+
+[node name="GlowingCrystal" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_02k7e")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, 2.18557e-08, -0.5, 0.5, -3.78552e-08, 0.866025, 0, -1, -4.37114e-08, -10, 5, 0)
+
+[node name="128CrystalCluster" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 0)
+material_override = ExtResource("4_ts06l")
+mesh = ExtResource("3_qcpsn")
+
+[node name="128CrystalCluster2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 0)
+material_override = ExtResource("4_ts06l")
+mesh = ExtResource("3_qcpsn")
+skeleton = NodePath("../128CrystalCluster")
+
+[node name="128CrystalCluster3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = ExtResource("5_rln3o")
+mesh = ExtResource("3_qcpsn")
+skeleton = NodePath("../128CrystalCluster2")
+
+[node name="128CrystalCluster4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 0)
+material_override = ExtResource("6_pr2rb")
+mesh = ExtResource("3_qcpsn")
+skeleton = NodePath(".")
+
+[node name="128CrystalCluster5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, 0)
+material_override = ExtResource("7_xfl71")
+mesh = ExtResource("3_qcpsn")
+skeleton = NodePath("../128CrystalCluster")

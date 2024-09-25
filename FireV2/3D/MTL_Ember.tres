@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c8eiee77a762b"]
+
+[ext_resource type="Shader" uid="uid://cvwm70uubyqsy" path="res://FireV2/3D/SDR_Ember.tres" id="1_0dd3o"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_0dd3o")

@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b5880cysjl1p0"]
+
+[ext_resource type="Shader" path="res://Cutoff/SDR_Cutoff_Interior.gdshader" id="1_dcp5p"]
+
+[resource]
+render_priority = 127
+shader = ExtResource("1_dcp5p")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/cutplane = null

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn7wxf1viow2f"]
+
+[ext_resource type="ArrayMesh" uid="uid://cprkmtsidexbu" path="res://GlowingCrystal/128_CrystalCluster.obj" id="1_utpvv"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="128CrystalCluster" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = ExtResource("1_utpvv")

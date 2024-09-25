@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl6r88cy37ef1"]
+
+[ext_resource type="Material" uid="uid://ekd0qdeo6g6j" path="res://FireV1/MTL_Fire.tres" id="1_mw3qv"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_ared1"]
+
+[node name="SCN_Fire" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_mw3qv")
+mesh = SubResource("QuadMesh_ared1")
+skeleton = NodePath("../Sprite3D")

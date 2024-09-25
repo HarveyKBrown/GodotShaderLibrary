@@ -1,0 +1,213 @@
+[gd_scene load_steps=34 format=3 uid="uid://bd4lvvqcabkr7"]
+
+[ext_resource type="Material" uid="uid://c7csnwlv5uf6i" path="res://FireV2/3D/MTL_3DFireV2MK2.tres" id="1_orhqy"]
+[ext_resource type="Script" path="res://FireV2/3D/Billboard.gd" id="2_tpjh3"]
+[ext_resource type="Material" uid="uid://c8eiee77a762b" path="res://FireV2/3D/MTL_Ember.tres" id="3_235di"]
+[ext_resource type="Material" uid="uid://dix63sutgubov" path="res://FireV2/3D/MTL_Particle_Smoke.tres" id="3_sbiua"]
+[ext_resource type="Script" path="res://FireV2/3D/CameraRotateAround.gd" id="3_wol85"]
+[ext_resource type="Script" path="res://FireV2/3D/FlickeringOmniLight3D.gd" id="6_1wodo"]
+[ext_resource type="Material" uid="uid://c8umpuykp4gxl" path="res://FireV2/3D/MTL_ParticalProcess_Fire.tres" id="6_8jb74"]
+[ext_resource type="Material" uid="uid://o3ah5ujtj7l4" path="res://GridMaterial/MTL_Grid.tres" id="8_sfb8f"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_85jht"]
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_y3txw"]
+material = ExtResource("1_orhqy")
+
+[sub_resource type="Curve" id="Curve_t01r0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.46473, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_crp3p"]
+curve = SubResource("Curve_t01r0")
+
+[sub_resource type="Gradient" id="Gradient_yyntc"]
+offsets = PackedFloat32Array(0, 0.56338, 1)
+colors = PackedColorArray(1, 0.858667, 0.47, 1, 0.75, 0.1195, 0.0225, 1, 0.449219, 0.052267, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_c2ri1"]
+gradient = SubResource("Gradient_yyntc")
+
+[sub_resource type="Curve" id="Curve_w72qd"]
+max_value = 10.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.40249, 10), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ko3dk"]
+curve = SubResource("Curve_w72qd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_310xa"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.4
+initial_velocity_max = 0.6
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.7
+color_ramp = SubResource("GradientTexture1D_c2ri1")
+alpha_curve = SubResource("CurveTexture_crp3p")
+emission_curve = SubResource("CurveTexture_ko3dk")
+
+[sub_resource type="QuadMesh" id="QuadMesh_p1q3v"]
+lightmap_size_hint = Vector2i(2, 2)
+material = ExtResource("3_235di")
+size = Vector2(0.02, 0.02)
+
+[sub_resource type="Curve" id="Curve_1kc0s"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.294606, 0.516483), 0.0, 0.0, 0, 0, Vector2(0.684647, 0.516483), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_o52et"]
+curve = SubResource("Curve_1kc0s")
+
+[sub_resource type="Curve" id="Curve_30vfe"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(0.157676, -3.95605), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7d4i8"]
+curve = SubResource("Curve_30vfe")
+
+[sub_resource type="Gradient" id="Gradient_ucvhx"]
+offsets = PackedFloat32Array(0.0657277, 0.286385, 0.586854)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.959293, 0, 1, 1, 0.11875, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pglgr"]
+gradient = SubResource("Gradient_ucvhx")
+
+[sub_resource type="Curve" id="Curve_m7o2d"]
+_data = [Vector2(0, 0.461538), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hbutm"]
+curve = SubResource("Curve_m7o2d")
+
+[sub_resource type="Curve" id="Curve_xvmyv"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_huj6p"]
+curve = SubResource("Curve_xvmyv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6xp0h"]
+emission_shape = 1
+emission_sphere_radius = 0.08
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+spread = 34.253
+initial_velocity_min = 0.4
+initial_velocity_max = 0.6
+angular_velocity_min = -595.86
+angular_velocity_max = 381.54
+angular_velocity_curve = SubResource("CurveTexture_7d4i8")
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.23517e-06
+radial_accel_max = -2.23517e-06
+damping_min = 0.178
+damping_max = 0.178
+scale_max = 1.2
+scale_curve = SubResource("CurveTexture_hbutm")
+color = Color(0.95, 0.95, 0.95, 1)
+color_ramp = SubResource("GradientTexture1D_pglgr")
+alpha_curve = SubResource("CurveTexture_o52et")
+hue_variation_min = -2.23517e-08
+hue_variation_max = -2.23517e-08
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+turbulence_noise_strength = 0.29
+turbulence_noise_scale = 0.355
+turbulence_noise_speed = Vector3(0, 1, 0)
+turbulence_influence_min = 0.026
+turbulence_influence_max = 0.189
+turbulence_initial_displacement_min = 1.49012e-06
+turbulence_initial_displacement_max = 1.49012e-06
+turbulence_influence_over_life = SubResource("CurveTexture_huj6p")
+
+[sub_resource type="QuadMesh" id="QuadMesh_kkqfg"]
+material = ExtResource("3_sbiua")
+size = Vector2(0.5, 0.5)
+subdivide_width = 1
+subdivide_depth = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_qtq5g"]
+material = ExtResource("3_sbiua")
+subdivide_width = 2
+subdivide_depth = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_uyx6k"]
+
+[sub_resource type="Environment" id="Environment_q3pgh"]
+glow_intensity = 3.7
+glow_bloom = 0.35
+glow_hdr_scale = 1.85
+glow_hdr_luminance_cap = 0.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Fire2" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.999995, 0, 1.74845e-07, 0, 0.999995, 0, -1.74845e-07, 0, 0.999996, -2.45571e-05, 0.437427, 8.47578e-05)
+amount = 1
+interp_to_end = 1.0
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_85jht")
+draw_pass_1 = SubResource("QuadMesh_y3txw")
+
+[node name="Embers" type="GPUParticles3D" parent="Fire2"]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1.00001, 0, 1.74846e-07, 0, 1, 2.45573e-05, -0.263285, -8.47581e-05)
+lifetime = 1.2
+transform_align = 2
+process_material = SubResource("ParticleProcessMaterial_310xa")
+draw_pass_1 = SubResource("QuadMesh_p1q3v")
+
+[node name="SmallFlames" type="GPUParticles3D" parent="Fire2"]
+transform = Transform3D(1.00001, 0, -3.49694e-07, 0, 1.00001, 0, 3.49694e-07, 0, 1.00001, 2.45573e-05, -0.290959, -8.47581e-05)
+amount = 6
+lifetime = 0.6
+transform_align = 3
+process_material = SubResource("ParticleProcessMaterial_6xp0h")
+draw_pass_1 = SubResource("QuadMesh_kkqfg")
+
+[node name="Smoke" type="GPUParticles3D" parent="Fire2"]
+transform = Transform3D(1.00001, 0, -3.49694e-07, 0, 1.00001, 0, 3.49694e-07, 0, 1.00001, 2.45573e-05, -0.0507936, -8.47581e-05)
+amount = 6
+lifetime = 1.2
+transform_align = 3
+process_material = ExtResource("6_8jb74")
+draw_pass_1 = SubResource("QuadMesh_qtq5g")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Fire2"]
+transform = Transform3D(1.00001, 0, 1.84741e-13, 0, 1.00001, 0, -1.42109e-14, 0, 1, 2.45573e-05, -0.0697023, -8.47581e-05)
+light_color = Color(1, 0.565391, 0, 1)
+light_bake_mode = 0
+omni_range = 3.707
+script = ExtResource("6_1wodo")
+
+[node name="Fire" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.999995, 0, 1.74845e-07, 0, 0.999995, 0, -1.74845e-07, 0, 0.999996, 0, 0.434157, 0)
+visible = false
+material_override = ExtResource("1_orhqy")
+mesh = SubResource("QuadMesh_uyx6k")
+material = ExtResource("1_orhqy")
+script = ExtResource("2_tpjh3")
+LockX = true
+
+[node name="Camera3D2" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.970666, 0.240431, 0, -0.240431, 0.970666, 0, 1.40039, 1.89394)
+environment = SubResource("Environment_q3pgh")
+current = true
+fov = 45.6
+script = ExtResource("3_wol85")
+target = NodePath("../Fire")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(14.5297, 0, 0, 0, 1.00717, 0, 0, 0, 14.5297, 0, -0.216279, 0)
+material_override = ExtResource("8_sfb8f")
+size = Vector3(1, 0.430786, 1)
+material = ExtResource("8_sfb8f")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 2.59808, 1.5)

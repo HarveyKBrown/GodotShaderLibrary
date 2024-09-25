@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dt54bhqgn70rs"
+path="res://.godot/imported/PokeballThing.obj-f7ba8326e572e46f3ffbb49460ffff40.mesh"
+
+[deps]
+
+files=["res://.godot/imported/PokeballThing.obj-f7ba8326e572e46f3ffbb49460ffff40.mesh"]
+
+source_file="res://GlowingCrystal/BlenderImport/PokeballThing.obj"
+dest_files=["res://.godot/imported/PokeballThing.obj-f7ba8326e572e46f3ffbb49460ffff40.mesh", "res://.godot/imported/PokeballThing.obj-f7ba8326e572e46f3ffbb49460ffff40.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

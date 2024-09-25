@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://o3ah5ujtj7l4"]
+
+[ext_resource type="Shader" path="res://GridMaterial/SDR_Grid.gdshader" id="1_0dh43"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_0dh43")
+shader_parameter/GridSize = 1.0
+shader_parameter/Color1 = Color(0.09, 0.09, 0.09, 0.854902)
+shader_parameter/Color2 = Color(0.0273438, 0.0273438, 0.0273438, 1)

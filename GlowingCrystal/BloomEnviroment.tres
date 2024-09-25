@@ -1,0 +1,8 @@
+[gd_resource type="Environment" format=3 uid="uid://b6tsi0qey61qf"]
+
+[resource]
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.38
+glow_bloom = 0.21
+glow_blend_mode = 0

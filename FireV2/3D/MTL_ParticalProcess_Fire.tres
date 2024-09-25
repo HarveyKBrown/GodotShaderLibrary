@@ -1,0 +1,70 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=11 format=3 uid="uid://c8umpuykp4gxl"]
+
+[sub_resource type="Curve" id="Curve_5ledg"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.489627, 0.505494), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_kg7ud"]
+curve = SubResource("Curve_5ledg")
+
+[sub_resource type="Curve" id="Curve_cbqbi"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(0.157676, -3.95605), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_8asgg"]
+curve = SubResource("Curve_cbqbi")
+
+[sub_resource type="Gradient" id="Gradient_risi2"]
+offsets = PackedFloat32Array(0, 0.239437)
+colors = PackedColorArray(1, 0.276579, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_so8rl"]
+gradient = SubResource("Gradient_risi2")
+
+[sub_resource type="Curve" id="Curve_duf7j"]
+_data = [Vector2(0, 0.461538), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bdixa"]
+curve = SubResource("Curve_duf7j")
+
+[sub_resource type="Curve" id="Curve_13twc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_c55yu"]
+curve = SubResource("Curve_13twc")
+
+[resource]
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+spread = 31.567
+initial_velocity_min = 0.2
+initial_velocity_max = 0.25
+angular_velocity_min = -595.86
+angular_velocity_max = 381.54
+angular_velocity_curve = SubResource("CurveTexture_8asgg")
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.23517e-06
+radial_accel_max = -2.23517e-06
+damping_min = 0.178
+damping_max = 0.178
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_bdixa")
+color = Color(0.95, 0.95, 0.95, 1)
+color_ramp = SubResource("GradientTexture1D_so8rl")
+alpha_curve = SubResource("CurveTexture_kg7ud")
+hue_variation_min = -2.23517e-08
+hue_variation_max = -2.23517e-08
+anim_offset_max = 1.0
+turbulence_noise_strength = 0.29
+turbulence_noise_scale = 0.355
+turbulence_noise_speed = Vector3(0, 1, 0)
+turbulence_influence_min = 0.026
+turbulence_influence_max = 0.189
+turbulence_initial_displacement_min = 1.49012e-06
+turbulence_initial_displacement_max = 1.49012e-06
+turbulence_influence_over_life = SubResource("CurveTexture_c55yu")

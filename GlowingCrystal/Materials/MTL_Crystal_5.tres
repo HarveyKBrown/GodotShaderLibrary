@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dxgb22g7i5xxn"]
+
+[ext_resource type="Shader" path="res://GlowingCrystal/Materials/SDR_Crystal.gdshader" id="1_7gk8y"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_7gk8y")
+shader_parameter/BaseColor = Color(0.756863, 0.960784, 0.937255, 1)
+shader_parameter/BaseIntensity = 1.5
+shader_parameter/FresnelPower = 2.0
+shader_parameter/TopColor = Color(0.705882, 0.356863, 0.0666667, 1)
+shader_parameter/TopIntensity = 3.305
+shader_parameter/TopLine = 0.455
+shader_parameter/BottomColor = Color(0.780392, 0.811765, 1, 1)
+shader_parameter/BottomIntensity = 2.4
+shader_parameter/BottomLine = 0.78

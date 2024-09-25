@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://14fdu5ebfugm"]
+
+[ext_resource type="Material" uid="uid://bwsvwhhs30o2t" path="res://2D_RotatingNoise/Material1.tres" id="1_g0i86"]
+[ext_resource type="Texture2D" uid="uid://d126073fhttgq" path="res://icon.svg" id="2_3j7g1"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+material = ExtResource("1_g0i86")
+position = Vector2(83, 88)
+texture = ExtResource("2_3j7g1")

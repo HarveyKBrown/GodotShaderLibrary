@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dumb15lgyss47"]
+
+[ext_resource type="Shader" path="res://2D_Noise/SDR_2DNoise2.gdshader" id="1_72vf3"]
+
+[resource]
+shader = ExtResource("1_72vf3")

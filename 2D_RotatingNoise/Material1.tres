@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bwsvwhhs30o2t"]
+
+[ext_resource type="Shader" path="res://2D_RotatingNoise/Shader1.gdshader" id="1_02ror"]
+
+[resource]
+shader = ExtResource("1_02ror")
+shader_parameter/scale_speed = 1.0

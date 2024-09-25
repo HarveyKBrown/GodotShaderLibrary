@@ -1,0 +1,45 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://c7csnwlv5uf6i"]
+
+[ext_resource type="Shader" uid="uid://jsd1fvjy4qvk" path="res://FireV2/3D/SDR_3DFireV2MK2.tres" id="1_cae5o"]
+
+[sub_resource type="Gradient" id="Gradient_ovh47"]
+offsets = PackedFloat32Array(0.217899, 0.435798, 0.867704, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.012087, 0, 1, 0.917969, 0.793454, 0, 1, 0.917969, 0.883398, 0.448514, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rw45h"]
+gradient = SubResource("Gradient_ovh47")
+use_hdr = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5hnk5"]
+seed = 860
+frequency = 0.0074
+offset = Vector3(128, 0, 0)
+fractal_type = 0
+domain_warp_amplitude = 9.3
+domain_warp_frequency = 14.82
+domain_warp_fractal_octaves = 10
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4gcwl"]
+invert = true
+seamless = true
+seamless_blend_skirt = 0.207
+noise = SubResource("FastNoiseLite_5hnk5")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_03cxr"]
+noise_type = 2
+frequency = 0.0145
+fractal_type = 0
+fractal_octaves = 10
+fractal_lacunarity = 4.195
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cbbrd"]
+seamless = true
+seamless_blend_skirt = 0.2
+noise = SubResource("FastNoiseLite_03cxr")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_cae5o")
+shader_parameter/Voronoi = SubResource("NoiseTexture2D_cbbrd")
+shader_parameter/Simplex = SubResource("NoiseTexture2D_4gcwl")
+shader_parameter/ColorRamp = SubResource("GradientTexture1D_rw45h")

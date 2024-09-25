@@ -1,0 +1,126 @@
+[gd_resource type="VisualShader" load_steps=8 format=3 uid="uid://br7as6wk4kmg8"]
+
+[sub_resource type="VisualShaderNodeGlobalExpression" id="VisualShaderNodeGlobalExpression_iqv1c"]
+size = Vector2(817.66, 482)
+expression = "float random (vec2 uv) {
+	return fract(sin(uv.x));
+}"
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_wo068"]
+size = Vector2(528.3, 255.27)
+expression = "//color = vec4(random(UV));
+color = vec4(1.0);
+"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_w4jcb"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_rbana"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_lyetq"]
+size = Vector2(606.198, 305.372)
+expression = "position = vec2(cos(angle) * radius, sin(angle) * radius);"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_pnnni"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_npm6n"]
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+// Varyings
+varying float var_TEST;
+
+
+
+// GlobalExpression:0
+	float random (vec2 uv) {
+		return fract(sin(uv.x));
+	}
+
+void vertex() {
+// Input:3
+	float n_out3p0 = TIME;
+
+
+// FloatConstant:4
+	float n_out4p0 = 0.000000;
+
+
+	vec2 n_out2p0;
+// Expression:2
+	n_out2p0 = vec2(0.0, 0.0);
+	{
+		n_out2p0 = vec2(cos(n_out3p0) * n_out4p0, sin(n_out3p0) * n_out4p0);
+	}
+
+
+// Output:0
+	VERTEX = n_out2p0;
+
+
+	var_TEST = 0.0;
+}
+
+void fragment() {
+// Input:7
+	vec2 n_out7p0 = UV;
+
+
+	vec4 n_out6p0;
+// Expression:6
+	n_out6p0 = vec4(0.0, 0.0, 0.0, 0.0);
+	{
+		//n_out6p0 = vec4(random(n_out7p0));
+		n_out6p0 = vec4(1.0);
+		
+	}
+
+
+// Output:0
+	COLOR.rgb = vec3(n_out6p0.xyz);
+
+
+}
+"
+mode = 1
+flags/light_only = false
+varyings/TEST = "0,0"
+nodes/vertex/0/position = Vector2(740, 160)
+nodes/vertex/2/node = SubResource("VisualShaderNodeExpression_lyetq")
+nodes/vertex/2/position = Vector2(-60, 140)
+nodes/vertex/2/size = Vector2(606.198, 305.372)
+nodes/vertex/2/input_ports = "0,0,angle;1,0,radius;"
+nodes/vertex/2/output_ports = "0,3,position;"
+nodes/vertex/2/expression = "position = vec2(cos(angle) * radius, sin(angle) * radius);"
+nodes/vertex/3/node = SubResource("VisualShaderNodeInput_pnnni")
+nodes/vertex/3/position = Vector2(-480, 120)
+nodes/vertex/4/node = SubResource("VisualShaderNodeFloatConstant_npm6n")
+nodes/vertex/4/position = Vector2(-540, 280)
+nodes/vertex/connections = PackedInt32Array(3, 0, 2, 0, 4, 0, 2, 1, 2, 0, 0, 0)
+nodes/fragment/0/position = Vector2(500, 120)
+nodes/fragment/5/node = SubResource("VisualShaderNodeGlobalExpression_iqv1c")
+nodes/fragment/5/position = Vector2(-1140, 420)
+nodes/fragment/5/size = Vector2(817.66, 482)
+nodes/fragment/5/input_ports = ""
+nodes/fragment/5/output_ports = ""
+nodes/fragment/5/expression = "float random (vec2 uv) {
+	return fract(sin(uv.x));
+}"
+nodes/fragment/6/node = SubResource("VisualShaderNodeExpression_wo068")
+nodes/fragment/6/position = Vector2(-120, 80)
+nodes/fragment/6/size = Vector2(528.3, 255.27)
+nodes/fragment/6/input_ports = "0,3,UV;"
+nodes/fragment/6/output_ports = "0,5,color;"
+nodes/fragment/6/expression = "//color = vec4(random(UV));
+color = vec4(1.0);
+"
+nodes/fragment/7/node = SubResource("VisualShaderNodeInput_w4jcb")
+nodes/fragment/7/position = Vector2(-500, 80)
+nodes/fragment/8/node = SubResource("VisualShaderNodeInput_rbana")
+nodes/fragment/8/position = Vector2(-500, 200)
+nodes/fragment/connections = PackedInt32Array(7, 0, 6, 0, 6, 0, 0, 0)

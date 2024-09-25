@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cc0vjjsv8de33"]
+
+[ext_resource type="Material" uid="uid://b5880cysjl1p0" path="res://Cutoff/MTL_Cutoff_Interior.tres" id="1_0d3o8"]
+[ext_resource type="Shader" path="res://Cutoff/SDR_Cutoff.gdshader" id="1_2ff5v"]
+
+[resource]
+render_priority = 0
+next_pass = ExtResource("1_0d3o8")
+shader = ExtResource("1_2ff5v")
+shader_parameter/color = Color(0.94902, 0, 0, 1)
+shader_parameter/borderColor = Color(1, 1, 1, 1)
+shader_parameter/cutplane = null

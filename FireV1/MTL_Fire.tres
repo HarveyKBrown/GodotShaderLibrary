@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://ekd0qdeo6g6j"]
+
+[ext_resource type="Shader" path="res://FireV1/SDR_Fire.gdshader" id="1_xnjaa"]
+[ext_resource type="Texture2D" uid="uid://cgqp0qlgxwrtw" path="res://FireV1/WispyNoise.png" id="2_5wj41"]
+[ext_resource type="Texture2D" uid="uid://bv4hvjboamk7o" path="res://FireV1/FireMask.png" id="3_uw2jm"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_xnjaa")
+shader_parameter/emission_intensity = 1.42
+shader_parameter/time_scale = 3.0
+shader_parameter/texture_scale = Vector2(0.22, 2.675)
+shader_parameter/edge_softness = 0.225
+shader_parameter/noise_texture = ExtResource("2_5wj41")
+shader_parameter/texture_mask = ExtResource("3_uw2jm")

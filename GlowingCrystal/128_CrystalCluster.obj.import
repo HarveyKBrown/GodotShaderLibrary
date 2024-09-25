@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cprkmtsidexbu"
+path="res://.godot/imported/128_CrystalCluster.obj-bfbd1a361fe06f741d5174cd66349c74.mesh"
+
+[deps]
+
+files=["res://.godot/imported/128_CrystalCluster.obj-bfbd1a361fe06f741d5174cd66349c74.mesh"]
+
+source_file="res://GlowingCrystal/128_CrystalCluster.obj"
+dest_files=["res://.godot/imported/128_CrystalCluster.obj-bfbd1a361fe06f741d5174cd66349c74.mesh", "res://.godot/imported/128_CrystalCluster.obj-bfbd1a361fe06f741d5174cd66349c74.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

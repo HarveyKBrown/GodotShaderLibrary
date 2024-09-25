@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbektql7jxlua"]
+
+[ext_resource type="Material" uid="uid://dumb15lgyss47" path="res://2D_Noise/MTL_2DNoise.tres" id="1_272nr"]
+[ext_resource type="Texture2D" uid="uid://d126073fhttgq" path="res://icon.svg" id="2_ctcb2"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+material = ExtResource("1_272nr")
+position = Vector2(134, 106)
+texture = ExtResource("2_ctcb2")

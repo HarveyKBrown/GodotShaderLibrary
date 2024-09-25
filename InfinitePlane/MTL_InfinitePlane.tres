@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://iyo5tu7kpyx1"]
+
+[ext_resource type="Shader" path="res://InfinitePlane/SDR_InfinitePlane.gdshader" id="1_3vheo"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_3vheo")
+shader_parameter/gridColor = Color(1, 0, 0, 1)
+shader_parameter/checkerColor = Color(0, 0, 0, 0)
+shader_parameter/fadeStart = 1.0
+shader_parameter/fadeEnd = 20.0
+shader_parameter/unitSize = 0.825
+shader_parameter/subdivisions = 2
+shader_parameter/majorLineThickness = 2.405
+shader_parameter/minorLineThickness = 6.215
+shader_parameter/minorLineAlpha = 0.175
+shader_parameter/centerOffset = Vector3(0, 0, 0)
