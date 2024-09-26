@@ -65,8 +65,13 @@ lightmap_size_hint = Vector2i(2, 2)
 material = ExtResource("3_235di")
 size = Vector2(0.04, 0.02)
 
+[sub_resource type="QuadMesh" id="QuadMesh_qtq5g"]
+material = ExtResource("3_sbiua")
+subdivide_width = 2
+subdivide_depth = 2
+
 [sub_resource type="Curve" id="Curve_1kc0s"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.294606, 0.516483), 0.0, 0.0, 0, 0, Vector2(0.684647, 0.516483), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.576764, 0.505494), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_o52et"]
@@ -97,7 +102,7 @@ point_count = 1
 curve = SubResource("Curve_tcsfj")
 
 [sub_resource type="Curve" id="Curve_m7o2d"]
-_data = [Vector2(0, 0.461538), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.461538), 0.0, 0.0, 0, 0, Vector2(1, 0.824176), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_hbutm"]
@@ -112,13 +117,13 @@ curve = SubResource("Curve_xvmyv")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6xp0h"]
 emission_shape = 1
-emission_sphere_radius = 0.15
-angle_min = 1.07288e-05
-angle_max = 1.07288e-05
+emission_sphere_radius = 0.2
+angle_min = -161.4
+angle_max = 209.2
 direction = Vector3(0, 1, 0)
-spread = 46.343
-initial_velocity_min = 0.3
-initial_velocity_max = 0.5
+spread = 23.508
+initial_velocity_min = 0.1
+initial_velocity_max = 0.2
 angular_velocity_min = -595.86
 angular_velocity_max = 381.54
 angular_velocity_curve = SubResource("CurveTexture_7d4i8")
@@ -127,7 +132,7 @@ radial_accel_min = -2.23517e-06
 radial_accel_max = -2.23517e-06
 damping_min = 0.178
 damping_max = 0.178
-scale_max = 1.2
+scale_max = 1.1
 scale_curve = SubResource("CurveTexture_hbutm")
 color = Color(0.95, 0.95, 0.95, 1)
 color_ramp = SubResource("GradientTexture1D_pglgr")
@@ -151,17 +156,12 @@ size = Vector2(0.35, 0.35)
 subdivide_width = 1
 subdivide_depth = 1
 
-[sub_resource type="QuadMesh" id="QuadMesh_qtq5g"]
-material = ExtResource("3_sbiua")
-subdivide_width = 2
-subdivide_depth = 2
-
 [sub_resource type="Environment" id="Environment_iracb"]
 glow_enabled = true
 glow_intensity = 3.01
 
 [node name="Node3D" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.63996e-05, -0.00223684, -0.000171751)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00200343, -0.000403643, 0.000924587)
 
 [node name="Fire" type="CSGMesh3D" parent="."]
 transform = Transform3D(0.999995, 0, 1.74845e-07, 0, 0.999995, 0, -1.74845e-07, 0, 0.999996, 0, 0.434, 0)
@@ -177,15 +177,6 @@ transform_align = 3
 process_material = SubResource("ParticleProcessMaterial_310xa")
 draw_pass_1 = SubResource("QuadMesh_p1q3v")
 
-[node name="SmallFlames" type="GPUParticles3D" parent="Fire"]
-transform = Transform3D(1.00002, 0, -3.49695e-07, 0, 1.00002, 0, 3.49695e-07, 0, 1.00001, 0, -0.255808, 0)
-amount = 6
-lifetime = 0.5
-visibility_aabb = AABB(-0.619578, -0.518143, -0.648256, 1.24248, 1.30384, 1.29136)
-transform_align = 3
-process_material = SubResource("ParticleProcessMaterial_6xp0h")
-draw_pass_1 = SubResource("QuadMesh_kkqfg")
-
 [node name="Smoke" type="GPUParticles3D" parent="Fire"]
 transform = Transform3D(1.00002, 0, -3.49695e-07, 0, 1.00002, 0, 3.49695e-07, 0, 1.00001, -0.00649688, -0.0623059, -0.000683133)
 amount = 20
@@ -194,6 +185,23 @@ visibility_aabb = AABB(-1.04868, -1, -1.03399, 2.11756, 2.1482, 2.10115)
 transform_align = 3
 process_material = ExtResource("6_8jb74")
 draw_pass_1 = SubResource("QuadMesh_qtq5g")
+
+[node name="SmallFlames" type="GPUParticles3D" parent="Fire"]
+transform = Transform3D(1.00002, 0, -3.49695e-07, 0, 1.00002, 0, 3.49695e-07, 0, 1.00001, 0, -0.195454, 0)
+amount = 16
+lifetime = 0.5
+visibility_aabb = AABB(-0.619578, -0.518143, -0.648256, 1.24248, 1.30384, 1.29136)
+transform_align = 3
+process_material = SubResource("ParticleProcessMaterial_6xp0h")
+draw_pass_1 = SubResource("QuadMesh_kkqfg")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Fire"]
+transform = Transform3D(1.00001, 0, 1.13687e-13, 0, 1.00001, 0, -1.27898e-13, 0, 1, 0, -0.273976, 0)
+light_color = Color(1, 0.565391, 0, 1)
+light_energy = 1.19419
+light_bake_mode = 0
+omni_range = 3.707
+script = ExtResource("6_1wodo")
 
 [node name="Camera3D2" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(0.99999, 0.00449677, -0.000866943, -0.00416729, 0.972008, 0.23491, 0.001899, -0.234904, 0.972017, -0.00185559, 0.999292, 1.99087)
@@ -210,14 +218,6 @@ material = ExtResource("8_sfb8f")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 2.59808, 1.5)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0.367725, 0)
-light_color = Color(1, 0.565391, 0, 1)
-light_energy = 1.06273
-light_bake_mode = 0
-omni_range = 3.707
-script = ExtResource("6_1wodo")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_iracb")
