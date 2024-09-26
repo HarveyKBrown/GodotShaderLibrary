@@ -8,7 +8,6 @@ var speed : float = 0.35;
 func _ready():
 	pass # Replace with function body.
 
-
 func _process(delta):
 	angle += delta * speed;
 	position.x = sin(angle)*distance;

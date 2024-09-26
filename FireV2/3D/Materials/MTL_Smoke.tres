@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dix63sutgubov"]
+
+[ext_resource type="Shader" uid="uid://dkoqqsaogyebu" path="res://FireV2/3D/Materials/SDR_Smoke.tres" id="1_4wyta"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_4wyta")

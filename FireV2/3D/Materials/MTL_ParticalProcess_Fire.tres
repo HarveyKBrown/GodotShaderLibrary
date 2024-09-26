@@ -1,7 +1,7 @@
 [gd_resource type="ParticleProcessMaterial" load_steps=11 format=3 uid="uid://c8umpuykp4gxl"]
 
 [sub_resource type="Curve" id="Curve_5ledg"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.489627, 0.505494), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.489627, 0.505494), -1.37714, -1.37714, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_kg7ud"]
@@ -24,7 +24,7 @@ colors = PackedColorArray(1, 0.276579, 0, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_risi2")
 
 [sub_resource type="Curve" id="Curve_duf7j"]
-_data = [Vector2(0, 0.461538), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.461538), 0.0, 0.0, 0, 0, Vector2(0.979253, 0.989011), 1.67264, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_bdixa"]
@@ -41,9 +41,9 @@ curve = SubResource("Curve_13twc")
 angle_min = -720.0
 angle_max = 720.0
 direction = Vector3(0, 1, 0)
-spread = 31.567
-initial_velocity_min = 0.2
-initial_velocity_max = 0.25
+spread = 65.324
+initial_velocity_min = 0.3
+initial_velocity_max = 0.35
 angular_velocity_min = -595.86
 angular_velocity_max = 381.54
 angular_velocity_curve = SubResource("CurveTexture_8asgg")

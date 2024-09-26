@@ -33,7 +33,7 @@ default_input_values = [0, 0.0, 1, 0.5, 2, 0.5]
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_add, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded;
 
 
 
@@ -85,7 +85,7 @@ void fragment() {
 
 }
 "
-modes/blend = 1
+graph_offset = Vector2(-924.016, -136.964)
 flags/unshaded = true
 nodes/fragment/2/node = SubResource("VisualShaderNodeInput_ecxxu")
 nodes/fragment/2/position = Vector2(-2020, 280)

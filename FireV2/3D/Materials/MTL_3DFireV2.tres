@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=8 format=3 uid="uid://c7csnwlv5uf6i"]
 
-[ext_resource type="Shader" uid="uid://jsd1fvjy4qvk" path="res://FireV2/3D/SDR_3DFireV2MK2.tres" id="1_cae5o"]
+[ext_resource type="Shader" uid="uid://jsd1fvjy4qvk" path="res://FireV2/3D/Materials/SDR_3DFireV2.tres" id="1_cm6sd"]
 
 [sub_resource type="Gradient" id="Gradient_ovh47"]
 offsets = PackedFloat32Array(0.217899, 0.435798, 0.867704, 1)
@@ -38,8 +38,8 @@ seamless_blend_skirt = 0.2
 noise = SubResource("FastNoiseLite_03cxr")
 
 [resource]
-render_priority = 0
-shader = ExtResource("1_cae5o")
+render_priority = 1
+shader = ExtResource("1_cm6sd")
 shader_parameter/Voronoi = SubResource("NoiseTexture2D_cbbrd")
 shader_parameter/Simplex = SubResource("NoiseTexture2D_4gcwl")
 shader_parameter/ColorRamp = SubResource("GradientTexture1D_rw45h")
