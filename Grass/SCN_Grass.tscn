@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://ccpon4njvttgi"]
+[gd_scene load_steps=17 format=3 uid="uid://ccpon4njvttgi"]
 
 [ext_resource type="Terrain3DStorage" uid="uid://dregckm3vk3ko" path="res://Grass/SCN_Grass_TerrainResource.res" id="1_ndvls"]
 [ext_resource type="Script" path="res://Scripts/BasicCharacter.cs" id="2_g7543"]
+[ext_resource type="Script" path="res://Grass/GrassController.cs" id="3_ca0rq"]
 
 [sub_resource type="Environment" id="Environment_5cb8x"]
 glow_enabled = true
@@ -64,6 +65,16 @@ size = Vector3(1, 2, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r2ybf"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0pyri"]
+albedo_color = Color(0.241583, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g2ool"]
+material = SubResource("StandardMaterial3D_0pyri")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4sa7e"]
+noise_type = 0
+frequency = 1.0
+
 [node name="Node3D" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -77,19 +88,25 @@ storage = ExtResource("1_ndvls")
 material = SubResource("Terrain3DMaterial_mx2xl")
 assets = SubResource("Terrain3DAssets_hi7cv")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("CameraPivot", "PlayerMesh")]
+[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("CameraPivot", "PlayerMesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.34536, 0)
 script = ExtResource("2_g7543")
 CameraPivot = NodePath("CameraPivot")
 PlayerMesh = NodePath("PlayerMesh")
 
-[node name="PlayerMesh" type="CSGMesh3D" parent="CharacterBody3D"]
+[node name="PlayerMesh" type="CSGMesh3D" parent="Player"]
 mesh = SubResource("BoxMesh_jf4rj")
 
-[node name="PlayerColision" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="PlayerColision" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_r2ybf")
 
-[node name="CameraPivot" type="Node3D" parent="CharacterBody3D"]
+[node name="CameraPivot" type="Node3D" parent="Player"]
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/CameraPivot"]
+[node name="Camera3D" type="Camera3D" parent="Player/CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.991939, 0.126718, 0, -0.126718, 0.991939, 0.992564, 2.72115, 5.02995)
+
+[node name="GrassController" type="Node3D" parent="." node_paths=PackedStringArray("Player")]
+script = ExtResource("3_ca0rq")
+Player = NodePath("../Player")
+GrassMesh = SubResource("BoxMesh_g2ool")
+Noise = SubResource("FastNoiseLite_4sa7e")
