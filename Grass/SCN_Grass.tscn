@@ -89,7 +89,7 @@ material = SubResource("Terrain3DMaterial_mx2xl")
 assets = SubResource("Terrain3DAssets_hi7cv")
 
 [node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("CameraPivot", "PlayerMesh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.34536, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2.345, 10)
 script = ExtResource("2_g7543")
 CameraPivot = NodePath("CameraPivot")
 PlayerMesh = NodePath("PlayerMesh")
