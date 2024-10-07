@@ -175,7 +175,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-2424.86, 188.427)
 flags/unshaded = true
 varyings/anim_progress = "0,0"
 nodes/vertex/2/node = SubResource("VisualShaderNodeVaryingSetter_ufbmt")

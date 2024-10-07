@@ -1,0 +1,95 @@
+[gd_scene load_steps=13 format=3 uid="uid://ccpon4njvttgi"]
+
+[ext_resource type="Terrain3DStorage" uid="uid://dregckm3vk3ko" path="res://Grass/SCN_Grass_TerrainResource.res" id="1_ndvls"]
+[ext_resource type="Script" path="res://Scripts/BasicCharacter.cs" id="2_g7543"]
+
+[sub_resource type="Environment" id="Environment_5cb8x"]
+glow_enabled = true
+glow_intensity = 3.01
+
+[sub_resource type="Gradient" id="Gradient_5tphn"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ahae2"]
+noise_type = 2
+frequency = 0.03
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bripi"]
+seamless = true
+color_ramp = SubResource("Gradient_5tphn")
+noise = SubResource("FastNoiseLite_ahae2")
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_mx2xl"]
+_shader_parameters = {
+"blend_sharpness": 0.87,
+"height_blending": true,
+"macro_variation1": Color(1, 1, 1, 1),
+"macro_variation2": Color(1, 1, 1, 1),
+"noise1_angle": 0.0,
+"noise1_offset": Vector2(0.5, 0.5),
+"noise1_scale": 0.04,
+"noise2_scale": 0.076,
+"noise3_scale": 0.225,
+"noise_texture": SubResource("NoiseTexture2D_bripi"),
+"vertex_normals_distance": 128.0
+}
+show_checkered = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3pjha"]
+cull_mode = 2
+vertex_color_use_as_albedo = true
+backlight_enabled = true
+backlight = Color(0.5, 0.5, 0.5, 1)
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_a07y7"]
+height_offset = 0.5
+density = 10.0
+material_override = SubResource("StandardMaterial3D_3pjha")
+generated_type = 1
+
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_hi7cv"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_a07y7")])
+
+[sub_resource type="BoxMesh" id="BoxMesh_jf4rj"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r2ybf"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 2.59808, 1.5)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5cb8x")
+
+[node name="Terrain3D" type="Terrain3D" parent="."]
+storage = ExtResource("1_ndvls")
+material = SubResource("Terrain3DMaterial_mx2xl")
+assets = SubResource("Terrain3DAssets_hi7cv")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("CameraPivot", "PlayerMesh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.34536, 0)
+script = ExtResource("2_g7543")
+CameraPivot = NodePath("CameraPivot")
+PlayerMesh = NodePath("PlayerMesh")
+
+[node name="PlayerMesh" type="CSGMesh3D" parent="CharacterBody3D"]
+mesh = SubResource("BoxMesh_jf4rj")
+
+[node name="PlayerColision" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_r2ybf")
+
+[node name="CameraPivot" type="Node3D" parent="CharacterBody3D"]
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.991939, 0.126718, 0, -0.126718, 0.991939, 0.992564, 2.72115, 5.02995)

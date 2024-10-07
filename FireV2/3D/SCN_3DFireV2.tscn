@@ -3,8 +3,8 @@
 [ext_resource type="Material" uid="uid://c7csnwlv5uf6i" path="res://FireV2/3D/Materials/MTL_3DFireV2.tres" id="1_orhqy"]
 [ext_resource type="Material" uid="uid://c8eiee77a762b" path="res://FireV2/3D/Materials/MTL_Ember.tres" id="3_235di"]
 [ext_resource type="Material" uid="uid://dix63sutgubov" path="res://FireV2/3D/Materials/MTL_Smoke.tres" id="3_sbiua"]
-[ext_resource type="Script" path="res://FireV2/3D/Scripts/CameraRotateAround.gd" id="3_wol85"]
-[ext_resource type="Script" path="res://FireV2/3D/Scripts/FlickeringOmniLight3D.gd" id="6_1wodo"]
+[ext_resource type="Script" path="res://Scripts/CameraRotateAround.gd" id="3_wol85"]
+[ext_resource type="Script" path="res://Scripts/FlickeringOmniLight3D.gd" id="6_1wodo"]
 [ext_resource type="Material" uid="uid://c8umpuykp4gxl" path="res://FireV2/3D/Materials/MTL_ParticalProcess_Fire.tres" id="6_8jb74"]
 [ext_resource type="Material" uid="uid://o3ah5ujtj7l4" path="res://GridMaterial/MTL_Grid.tres" id="8_sfb8f"]
 
@@ -198,7 +198,7 @@ draw_pass_1 = SubResource("QuadMesh_kkqfg")
 [node name="OmniLight3D" type="OmniLight3D" parent="Fire"]
 transform = Transform3D(1.00001, 0, 1.13687e-13, 0, 1.00001, 0, -1.27898e-13, 0, 1, 0, -0.273976, 0)
 light_color = Color(1, 0.565391, 0, 1)
-light_energy = 1.19419
+light_energy = 1.28513
 light_bake_mode = 0
 omni_range = 3.707
 script = ExtResource("6_1wodo")
