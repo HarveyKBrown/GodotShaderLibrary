@@ -20,21 +20,20 @@ float hash_float(vec2 p) {
 
 void fragment() {
 	const float cells = 20.0;
-	
+
 	vec2 cell = floor(UV*cells) / cells;
 	vec2 off = (UV - cell) * cells;
 	vec2 cell_size = vec2(1.0) / cells;
-	
+
 	float corner00 = hash_float(cell);
 	float corner10 = hash_float(cell + vec2(cell_size.x, 0.0));
 	float corner01 = hash_float(cell + vec2(0.0, cell_size.y));
 	float corner11 = hash_float(cell + cell_size);
-	
+
 	vec2 cube = off*off*off*(10.0+off*(-15.0 + 6.0*off));
 	float a = mix(corner00, corner10, cube.x);
 	float b = mix(corner01, corner11, cube.x);
 	COLOR.xyz = vec3(mix(a, b, cube.y));
 //	COLOR.rgb = vec3(a);
-	
-}
 
+}

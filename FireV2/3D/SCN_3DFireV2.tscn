@@ -198,7 +198,7 @@ draw_pass_1 = SubResource("QuadMesh_kkqfg")
 [node name="OmniLight3D" type="OmniLight3D" parent="Fire"]
 transform = Transform3D(1.00001, 0, 1.13687e-13, 0, 1.00001, 0, -1.27898e-13, 0, 1, 0, -0.273976, 0)
 light_color = Color(1, 0.565391, 0, 1)
-light_energy = 1.28513
+light_energy = 1.13324
 light_bake_mode = 0
 omni_range = 3.707
 script = ExtResource("6_1wodo")

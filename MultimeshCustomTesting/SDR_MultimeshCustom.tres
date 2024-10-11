@@ -1,0 +1,43 @@
+[gd_resource type="VisualShader" load_steps=3 format=3 uid="uid://cdw6mkdkevqg"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_02wme"]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_1pe23"]
+input_name = "instance_custom"
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+
+
+
+void vertex() {
+// Input:2
+	vec4 n_out2p0 = INSTANCE_CUSTOM;
+
+
+// Output:0
+	COLOR.rgb = vec3(n_out2p0.xyz);
+
+
+}
+
+void fragment() {
+// Input:2
+	vec4 n_out2p0 = COLOR;
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+
+
+}
+"
+nodes/vertex/2/node = SubResource("VisualShaderNodeInput_1pe23")
+nodes/vertex/2/position = Vector2(-180, 280)
+nodes/vertex/connections = PackedInt32Array(2, 0, 0, 6)
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_02wme")
+nodes/fragment/2/position = Vector2(-220, 320)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0)

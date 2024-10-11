@@ -17,7 +17,7 @@ void vertex() {
 void fragment() {
 	float dist = cutDistance(-cutplane[1].xyz, cutplane[3].xyz, wvtx);
 	if (dist < 0.0) discard;
-	
+
 	float borderDist = smoothstep(0.0, 0.05, dist);
 	ALBEDO = mix(borderColor, color, borderDist);
 	EMISSION = mix(borderColor * 7.0, vec3(0.0), borderDist);

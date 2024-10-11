@@ -14,29 +14,34 @@ public partial class BasicCharacter : CharacterBody3D
 	[Export]
 	public float Speed = 8.0f;
 	[Export]
-	public float JumpVelocity = 4.5f;
+	public float JumpHeight = 1;
 	[Export]
 	public float PlayerRotationRate = 8.0f;
 	[Export]
 	public float CameraPanSpeed = 0.002f;
 
-
-	Vector3 Direction;
-	Vector3 InputDirection;
-
-	bool IsMoving;
+	//Calculated Values
+	Vector3 HorizontalVelocity;
+	Vector3 MovementInput;
+	public float JumpForce; //4.5
+	float CameraFacingAngle;
+	bool MouseLocked = true;
 
 	public override void _Ready() {
 		base._Ready();
 		Input.MouseMode = Input.MouseModeEnum.Captured;
+		JumpForce = Mathf.Sqrt(2 * 9.8f * JumpHeight);
 	}
 
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
 
-		if (IsMoving) {
-			PlayerMesh.Rotation = PlayerMesh.Rotation.Lerp(CameraPivot.Rotation, PlayerRotationRate * (float)delta);
+		//Rotate player to camera direction
+		if (MovementInput.LengthSquared() > 0) {
+			Vector3 newRotation = PlayerMesh.Rotation;
+			newRotation.Y = Mathf.Lerp(PlayerMesh.Rotation.Y, CameraFacingAngle, PlayerRotationRate * (float)delta);
+			PlayerMesh.Rotation = newRotation;
 		}
 	}
 
@@ -44,38 +49,28 @@ public partial class BasicCharacter : CharacterBody3D
 	{
 		Vector3 velocity = Velocity;
 
-		// Add the gravity.
-		if (!IsOnFloor())
-		{
-			velocity += GetGravity() * (float)delta;
+		// Add the gravity
+		if (!IsOnFloor()) {
+			velocity.Y += GetGravity().Y * (float)delta;
 		}
 
-		// Handle Jump.
-		if (Input.IsActionJustPressed("player_jump") && IsOnFloor())
-		{
-			velocity.Y = JumpVelocity;
+		// Handle jump
+		if (Input.IsActionJustPressed("player_jump") && IsOnFloor()) {
+			velocity.Y = JumpForce;
 		}
 
+		//Get input direction
+		Vector2 rawMovementInput = Input.GetVector("player_left", "player_right", "player_forward", "player_back");
+		MovementInput = new Vector3(rawMovementInput.X, 0, rawMovementInput.Y);
 
+		CameraFacingAngle = CameraPivot.Rotation.Y;
+		HorizontalVelocity = MovementInput.Rotated(Vector3.Up, CameraPivot.Rotation.Y).Normalized() * Speed;
 
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
-		Vector2 inputDir = Input.GetVector("player_left", "player_right", "player_forward", "player_back");
-		Direction = (CameraPivot.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
-		if (Direction != Vector3.Zero)
-		{
-			velocity.X = Direction.X * Speed;
-			velocity.Z = Direction.Z * Speed;
-			IsMoving = true;
-		}
-		else
-		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-			velocity.Z = Mathf.MoveToward(Velocity.Z, 0, Speed);
-			IsMoving = false;
-		}
+		velocity.X = HorizontalVelocity.X;
+		velocity.Z = HorizontalVelocity.Z;
 
 		Velocity = velocity;
+		//GD.Print($"MovementInput: {MovementInput}, HorizontalVelocity: {HorizontalVelocity}, Velocity: {Velocity}");
 		MoveAndSlide();
 	}
 
@@ -83,13 +78,22 @@ public partial class BasicCharacter : CharacterBody3D
 	{
 		// Mouse in viewport coordinates.
 		if (@event is InputEventMouseMotion eventMouseMotion) {
+			if (!MouseLocked) return;
 			//Yaw
-			CameraPivot.Rotate(CameraPivot.Basis.Y, -eventMouseMotion.Relative.X * CameraPanSpeed);
+			CameraPivot.Rotate(Vector3.Up, -eventMouseMotion.Relative.X * CameraPanSpeed);
 			//Pitch
-			//CameraPivot.Rotate(CameraPivot.Basis.X, eventMouseMotion.Relative.Y * CameraPanSpeed);
-			//CameraPivot.Rotate(Vector3.Left, eventMouseMotion.Relative.Y * CameraPanSpeed);
+			CameraPivot.Rotate(CameraPivot.Basis.X, -eventMouseMotion.Relative.Y * CameraPanSpeed);
 		}
 
-		if (@event.IsActionPressed("exit")) GetTree().Quit();
+		if (@event.IsActionPressed("click")) {
+			Input.MouseMode = Input.MouseModeEnum.Captured;
+			MouseLocked = true;
+		}
+
+		//if (@event.IsActionPressed("exit")) GetTree().Quit();
+		if (@event.IsActionPressed("exit")) {
+			Input.MouseMode = Input.MouseModeEnum.Visible;
+			MouseLocked = false;
+		}
 	}
 }

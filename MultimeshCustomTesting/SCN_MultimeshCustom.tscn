@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://v7fg44twar5b"]
+
+[ext_resource type="Script" path="res://MultimeshCustomTesting/CustomMeshGenTest.cs" id="1_plegq"]
+[ext_resource type="Shader" uid="uid://cdw6mkdkevqg" path="res://MultimeshCustomTesting/SDR_MultimeshCustom.tres" id="1_y8nbg"]
+[ext_resource type="Script" path="res://MultimeshCustomTesting/MultimeshCustom.cs" id="2_qhlsx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wime2"]
+cull_mode = 2
+shading_mode = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4tpsf"]
+render_priority = 0
+shader = ExtResource("1_y8nbg")
+
+[sub_resource type="BoxMesh" id="BoxMesh_61kuk"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="MultiMesh" id="MultiMesh_dbbdk"]
+transform_format = 1
+use_custom_data = true
+mesh = SubResource("BoxMesh_61kuk")
+
+[sub_resource type="Environment" id="Environment_j5vcr"]
+glow_enabled = true
+glow_intensity = 3.01
+
+[node name="ScnMultimeshCustom" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+material_override = SubResource("StandardMaterial3D_wime2")
+skeleton = NodePath("../MultimeshCubes")
+script = ExtResource("1_plegq")
+
+[node name="MultimeshCustom" type="MultiMeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_4tpsf")
+multimesh = SubResource("MultiMesh_dbbdk")
+script = ExtResource("2_qhlsx")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.694658, 0.131089, -0.707294, 0, 0.983255, 0.182236, 0.71934, -0.126591, 0.683026, -1.4424, 0.37938, 1.3966)
+fov = 53.8755
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.612306, 0.708574, -0.350719, -0.301593, 0.619389, 0.724844, 0.730837, -0.338052, 0.592957, 0, 2.59808, -1.38809)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_j5vcr")
+
+[node name="MultimeshCubes" type="MultiMeshInstance3D" parent="."]
+visible = false
+material_override = SubResource("ShaderMaterial_4tpsf")
+multimesh = SubResource("MultiMesh_dbbdk")

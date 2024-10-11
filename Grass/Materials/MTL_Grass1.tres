@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dd5pc357yuy22"]
+
+[ext_resource type="Shader" uid="uid://dwaouyu2x1irw" path="res://Grass/Materials/SDR_Grass1.tres" id="1_vfn54"]
+
+[sub_resource type="Gradient" id="Gradient_ab8a8"]
+offsets = PackedFloat32Array(0, 0.144231, 0.480769, 1)
+colors = PackedColorArray(0.056, 0.2, 0.08, 1, 0.296875, 0.59375, 0, 1, 0.801268, 1, 0, 1, 0.978, 1, 0.56, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gq4lh"]
+gradient = SubResource("Gradient_ab8a8")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_vfn54")
+shader_parameter/ColorRamp = SubResource("GradientTexture1D_gq4lh")
