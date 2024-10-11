@@ -2,14 +2,14 @@
 
 [ext_resource type="Shader" uid="uid://dwaouyu2x1irw" path="res://Grass/Materials/SDR_Grass1.tres" id="1_vfn54"]
 
-[sub_resource type="Gradient" id="Gradient_ab8a8"]
-offsets = PackedFloat32Array(0, 0.144231, 0.480769, 1)
-colors = PackedColorArray(0.056, 0.2, 0.08, 1, 0.296875, 0.59375, 0, 1, 0.801268, 1, 0, 1, 0.978, 1, 0.56, 1)
+[sub_resource type="Gradient" id="Gradient_katnp"]
+offsets = PackedFloat32Array(0, 0.261364, 0.855882, 1)
+colors = PackedColorArray(0.951237, 1, 0.673553, 1, 0.491197, 0.847656, 0.210674, 1, 0.173112, 0.488281, 0.288053, 1, 0.0924, 0.28, 0.12054, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_gq4lh"]
-gradient = SubResource("Gradient_ab8a8")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2emat"]
+gradient = SubResource("Gradient_katnp")
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_vfn54")
-shader_parameter/ColorRamp = SubResource("GradientTexture1D_gq4lh")
+shader_parameter/ColorRamp = SubResource("GradientTexture1D_2emat")
