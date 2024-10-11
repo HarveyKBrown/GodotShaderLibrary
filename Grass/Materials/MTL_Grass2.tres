@@ -4,15 +4,17 @@
 
 [sub_resource type="Gradient" id="Gradient_nmy1a"]
 offsets = PackedFloat32Array(0, 0.552941, 1)
-colors = PackedColorArray(0.40896, 0.64, 0.3968, 1, 0.878875, 0.89, 0.2225, 1, 0.65, 0.233133, 0.169, 1)
+colors = PackedColorArray(0.251109, 0.515625, 0.237187, 1, 0.89, 0.88711, 0.213829, 1, 0.65, 0.233133, 0.169, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_xig6h"]
 gradient = SubResource("Gradient_nmy1a")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_fd4ue"]
-frequency = 0.0147
-fractal_lacunarity = 2.52
-fractal_gain = 0.525
+noise_type = 0
+frequency = 0.0236
+fractal_octaves = 10
+fractal_lacunarity = 1.355
+fractal_gain = 0.635
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hvquu"]
 seamless = true
@@ -38,7 +40,7 @@ fractal_ping_pong_strength = 0.76
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_r1q71"]
 seamless = true
-seamless_blend_skirt = 0.3
+seamless_blend_skirt = 0.205
 noise = SubResource("FastNoiseLite_sov83")
 
 [resource]
