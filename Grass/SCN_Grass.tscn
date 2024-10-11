@@ -99,9 +99,10 @@ mesh = SubResource("BoxMesh_jf4rj")
 shape = SubResource("CapsuleShape3D_r2ybf")
 
 [node name="CameraPivot" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.978667, 0.205453, 0, -0.205453, 0.978667, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player/CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.991939, 0.126718, 0, -0.126718, 0.991939, 0.992564, 2.72115, 5.02995)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.993, 0, 5.03)
 
 [node name="TestGrass" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.263901, 0, -0.0230093)
