@@ -5,7 +5,8 @@ uniform sampler2D ColorVariationGradient : source_color, repeat_disable;
 uniform sampler2D ColorVariationNoise;
 uniform sampler2D WindNoise;
 uniform vec2 WindScroll;
-uniform float WindModStrength;
+uniform float WindScrollSpeed;
+uniform float WindStrength;
 
 //Return random float between 0 and 1
 float rand(vec2 co){
@@ -17,7 +18,7 @@ void vertex() {
 	COLOR = MODEL_MATRIX[3];
 	
 	//Scale Model
-	VERTEX = VERTEX * vec3(1.2, 2., 0.);
+	VERTEX = VERTEX * vec3(1., 2., 0.);
 	
 	//Modify the size of the grass
 	float height_mod = rand(MODEL_MATRIX[3].xz);
@@ -31,12 +32,15 @@ void vertex() {
 	VERTEX.x *= grass_width_mod;
 	
 	//Wind
-	float windAmount = 1. - 2. * texture(WindNoise, TIME * WindScroll + MODEL_MATRIX[3].xz * 0.01f).r;
+	float wind_amount = 1. - 2. * texture(WindNoise, TIME * WindScrollSpeed + MODEL_MATRIX[3].xz * 0.01f).r;
 	float vert_height = VERTEX.y - MODEL_MATRIX[3].y;
-	float wind_affect_height_mod = pow(vert_height, 2) * WindModStrength;
-	VERTEX.xz = VERTEX.xz + windAmount * WindScroll * wind_affect_height_mod;
-	VERTEX.y = VERTEX.y;
+	float wind_affect_height_mod = pow(vert_height, 2);
+	vec2 wind_xy_mod = wind_amount * normalize(WindScroll) * WindStrength * wind_affect_height_mod;
+	VERTEX.xz = VERTEX.xz + wind_xy_mod;
+	//float wind_y_mod = 1. / abs(wind_amount * WindStrength * wind_affect_height_mod);
+	//VERTEX.y = VERTEX.y * wind_affect_height_mod;
 	
+	//TODO apply view matrix before wind (and not via the modelview)
 	//TODO randomize positions of grass blades here, instead of in C#
 	
 	//Calculate the MODEL_VIEW_MATRIX to billboard the mesh around the Y axis
