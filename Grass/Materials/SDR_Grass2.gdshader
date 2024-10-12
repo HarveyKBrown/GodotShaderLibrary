@@ -38,7 +38,7 @@ void vertex() {
 	VERTEX = (billboard_matrix * VERTEX.xyzz).xyz;
 	
 	//Wind
-	float wind_amount = texture(WindNoise, TIME * WindScrollSpeed + MODEL_MATRIX[3].xz * 0.01f).r;
+	float wind_amount = - 0.3 + 1.3 * texture(WindNoise, TIME * WindScrollSpeed + MODEL_MATRIX[3].xz * 0.01f).r;
 	float vert_height = VERTEX.y - MODEL_MATRIX[3].y;
 	float wind_affect_height_mod = pow(vert_height, 2);
 	vec2 wind_xy_mod = wind_amount * normalize(WindScroll) * WindStrength * wind_affect_height_mod;
