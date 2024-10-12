@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ccpon4njvttgi"]
+[gd_scene load_steps=16 format=3 uid="uid://ccpon4njvttgi"]
 
 [ext_resource type="Terrain3DStorage" uid="uid://dregckm3vk3ko" path="res://Grass/SCN_Grass_TerrainResource.res" id="1_ndvls"]
 [ext_resource type="Script" path="res://Scripts/BasicCharacter.cs" id="2_g7543"]
@@ -69,9 +69,6 @@ size = Vector3(1, 2, 1)
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_gibf6"]
 noise_type = 0
 frequency = 1.0
-
-[sub_resource type="MultiMesh" id="MultiMesh_cv7ar"]
-use_custom_data = true
 
 [node name="Node3D" type="Node3D"]
 
@@ -562,6 +559,3 @@ script = ExtResource("3_ca0rq")
 Player = NodePath("../Player")
 GrassMesh = ExtResource("4_apxd4")
 Noise = SubResource("FastNoiseLite_gibf6")
-
-[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="GrassController"]
-multimesh = SubResource("MultiMesh_cv7ar")

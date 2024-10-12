@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=10 format=3 uid="uid://dyeja8fmw2pre"]
+[gd_resource type="ShaderMaterial" load_steps=11 format=3 uid="uid://dyeja8fmw2pre"]
 
 [ext_resource type="Shader" path="res://Grass/Materials/SDR_Grass2.gdshader" id="1_1sus7"]
 
@@ -28,9 +28,13 @@ colors = PackedColorArray(1, 1, 1, 1, 0.898438, 0.898438, 0.898438, 1, 0.358998,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_mjln3"]
 gradient = SubResource("Gradient_4ie45")
 
+[sub_resource type="Gradient" id="Gradient_y407w"]
+offsets = PackedFloat32Array(0, 0.85, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.955882, 0.955882, 0.955882, 1, 1, 1, 1, 1)
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_sov83"]
 seed = 490
-frequency = 0.0123
+frequency = 0.015
 fractal_type = 2
 fractal_octaves = 1
 fractal_lacunarity = 0.0
@@ -40,7 +44,8 @@ fractal_ping_pong_strength = 0.76
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_r1q71"]
 seamless = true
-seamless_blend_skirt = 0.205
+seamless_blend_skirt = 0.155
+color_ramp = SubResource("Gradient_y407w")
 noise = SubResource("FastNoiseLite_sov83")
 
 [resource]
