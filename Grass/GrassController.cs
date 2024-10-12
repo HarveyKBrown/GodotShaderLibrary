@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Data;
 
 public partial class GrassController : Node
 {
@@ -13,15 +14,17 @@ public partial class GrassController : Node
 
 	const float RANDOMNESS = 1f;
 	const float GRID_SIZE = 40;
-	const int GRASS_PER_GRID_LENGTH = 100; //100
-	const int GRASS_PER_GRID_LENGTH_LOD = GRASS_PER_GRID_LENGTH / 2;
-	const int MULTIMESH_GRID_SIZE_MAX = 21; //Must be odd
+	const int GRASS_PER_GRID_LENGTH_MAX = 100; //100
+	const int GRASS_PER_GRID_LENGTH_MID = 50;
+	const int GRASS_PER_GRID_LENGTH_MIN = 25;
 
 	/// <summary>
 	/// The size of the grid, within which we render the maximum amount of grass.
 	/// Must be odd.
 	/// </summary>
-	const int MULTIMESH_GRID_SIZE_MIN = 5;
+	const int MULTIMESH_GRID_SIZE_MAX = 5;
+	const int MULTIMESH_GRID_SIZE_MID = 9;
+	const int MULTIMESH_GRID_SIZE_MIN = 21;
 
 	MultiMeshInstance3D [] MultiMeshInstances;
 	Vector2I PlayerGridPosition = Vector2I.Zero;
@@ -30,10 +33,7 @@ public partial class GrassController : Node
 
 
 	//TODO LIST
-	// 1. Import grass model
-	// 2. Shader to modify vertex positions based wind (bonus: rotate slightly towards player)
 	// 2.1. Sampling terrain height
-	// 3. Randomized Color, Rotation, Scale.Y, Scale.XY
 	// 3.1. Queuing system for updating (single threaded, ie.. N per frame, time the code)
 	// 4. Custom instance data buffer (4, instead of 12 packed floats per instance)
 	// 5. Calculating the buffer in the compute shader
@@ -44,7 +44,7 @@ public partial class GrassController : Node
 
 	public override void _Ready() {
 
-		MultiMeshInstances = new MultiMeshInstance3D[MULTIMESH_GRID_SIZE_MAX*MULTIMESH_GRID_SIZE_MAX];
+		MultiMeshInstances = new MultiMeshInstance3D[MULTIMESH_GRID_SIZE_MIN*MULTIMESH_GRID_SIZE_MIN];
 
 		for (int i = 0; i < MultiMeshInstances.Length; i++) {
 			MultiMeshInstances[i] = GetNewMultimeshInstance();
@@ -61,7 +61,7 @@ public partial class GrassController : Node
 			Multimesh = new() {
 				Mesh = GrassMesh,
 				TransformFormat = MultiMesh.TransformFormatEnum.Transform3D,
-				InstanceCount = GRASS_PER_GRID_LENGTH * GRASS_PER_GRID_LENGTH,
+				InstanceCount = GRASS_PER_GRID_LENGTH_MAX * GRASS_PER_GRID_LENGTH_MAX,
 			},
 		};
 		return toReturn;
@@ -69,17 +69,23 @@ public partial class GrassController : Node
 
 	void UpdateInstances() {
 		GrassCount = 0;
-		int gridHalflength = MULTIMESH_GRID_SIZE_MAX / 2;
+		int gridHalflength = MULTIMESH_GRID_SIZE_MIN / 2;
 
 		for (int i = 0; i < MultiMeshInstances.Length; i++) {
-			int column = i % MULTIMESH_GRID_SIZE_MAX - gridHalflength;
-			int row = i / MULTIMESH_GRID_SIZE_MAX - gridHalflength;
+			int column = i % MULTIMESH_GRID_SIZE_MIN - gridHalflength;
+			int row = i / MULTIMESH_GRID_SIZE_MIN - gridHalflength;
 
 			Vector2I GridPosition = PlayerGridPosition + new Vector2I(column, row);
 
-			int GrassPerGridLength = (Mathf.Abs(column) >= MULTIMESH_GRID_SIZE_MIN || Mathf.Abs(row) >= MULTIMESH_GRID_SIZE_MIN) ? GRASS_PER_GRID_LENGTH_LOD : GRASS_PER_GRID_LENGTH;
+			int gridDistance = Mathf.Max(Mathf.Abs(column), Mathf.Abs(row));
 
-			GrassCount += UpdateMultiMeshInstance(MultiMeshInstances[i], GridPosition, GrassPerGridLength, Noise);
+			if (gridDistance <= (MULTIMESH_GRID_SIZE_MAX - 1)/2) {
+				GrassCount += UpdateMultiMeshInstance(MultiMeshInstances[i], GridPosition, GRASS_PER_GRID_LENGTH_MAX, Noise);
+			} else if (gridDistance <= (MULTIMESH_GRID_SIZE_MID - 1)/2) {
+				GrassCount += UpdateMultiMeshInstance(MultiMeshInstances[i], GridPosition, GRASS_PER_GRID_LENGTH_MID, Noise);
+			} else {
+				GrassCount += UpdateMultiMeshInstance(MultiMeshInstances[i], GridPosition, GRASS_PER_GRID_LENGTH_MIN, Noise);
+			}
 		}
 	}
 
@@ -96,11 +102,11 @@ public partial class GrassController : Node
 
 			float subGridSize = (float)GRID_SIZE / GrassPerGridLength;
 
-			//TODO compute shader, pass in a seed derived from grid coordinates, set up instance positions in buffer
-			//TOOD write my own vertex shader that uses custom data, so we only need 4 bits per grass, rather than 12 (a transform)
+			//TODO compute shader that calculates the packed buffer for us
 			Vector3 noisePositionMod = new Vector3(Noise.GetNoise2D(100 + column * 20 + GridPosition.X, row * 20 + GridPosition.Y), 0, Noise.GetNoise2D(column * 20 + GridPosition.X, row * 20 + GridPosition.Y)) * subGridSize * RANDOMNESS;
 			Vector3 gridPosition = new(column * subGridSize, 0, row * subGridSize);
 
+			//GrassMultiMesh.Multimesh.Buffer = *COMPUTE_SHADER_OUTPUT*
 			GrassMultiMesh.Multimesh.SetInstanceTransform(i, new Transform3D(Basis.Identity, instanceRootPosition + noisePositionMod + gridPosition));
 		}
 		//TODO Apply AABB to multimesh for culling
