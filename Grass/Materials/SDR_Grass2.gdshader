@@ -19,10 +19,12 @@ void vertex() {
 	COLOR = MODEL_MATRIX[3];
 	
 	// Scale Model
-	VERTEX = VERTEX * vec3(1., 2., 0.);
+	VERTEX = VERTEX * vec3(0.8, 1.0, 0.);
 	
 	// Modify the size of the grass
-	float height_mod = rand(MODEL_MATRIX[3].xz);
+	float height_mod = 0.5 + 1.0 * rand(MODEL_MATRIX[3].xz);
+	//float height_mod = 1.5 * texture(HeightVariatioNoise, MODEL_MATRIX[3].xz * 0.01).r;
+	//float height_mod = (0.5 + 0.5 * rand(MODEL_MATRIX[3].xz)) * texture(HeightVariatioNoise, MODEL_MATRIX[3].xz * 0.01).r;
 	const float y_weight = 0.8;
 	const float x_weight = 0.5;
 	VERTEX.y = VERTEX.y * (1. - y_weight + y_weight * height_mod);
@@ -38,13 +40,14 @@ void vertex() {
 	VERTEX = (billboard_matrix * VERTEX.xyzz).xyz;
 	
 	//Wind
-	float wind_amount = - 0.3 + 1.3 * texture(WindNoise, TIME * WindScrollSpeed + MODEL_MATRIX[3].xz * 0.01f).r;
+	vec2 normalized_wind_scroll = normalize(WindScroll);
+	float wind_amount = - 0.3 + 1.3 * texture(WindNoise, normalized_wind_scroll * TIME * WindScrollSpeed + MODEL_MATRIX[3].xz * 0.01f).r;
 	float vert_height = VERTEX.y - MODEL_MATRIX[3].y;
 	float wind_affect_height_mod = pow(vert_height, 2);
-	vec2 wind_xy_mod = wind_amount * normalize(WindScroll) * WindStrength * wind_affect_height_mod;
+	vec2 wind_xy_mod = wind_amount * -normalized_wind_scroll * WindStrength * wind_affect_height_mod;
 	VERTEX.xz = VERTEX.xz + wind_xy_mod;
 	float wind_height_mod_perc = 0.2;
-	VERTEX.y = VERTEX.y * 1.0/(1.0 - wind_height_mod_perc + wind_height_mod_perc * abs(wind_amount));
+	VERTEX.y = VERTEX.y * 1.0/(1.0 - wind_height_mod_perc + wind_height_mod_perc * abs(wind_amount) * 2.0);
 }
 
 void fragment() {

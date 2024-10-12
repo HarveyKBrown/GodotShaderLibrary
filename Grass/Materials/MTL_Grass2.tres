@@ -1,9 +1,9 @@
-[gd_resource type="ShaderMaterial" load_steps=11 format=3 uid="uid://dyeja8fmw2pre"]
+[gd_resource type="ShaderMaterial" load_steps=14 format=3 uid="uid://dyeja8fmw2pre"]
 
 [ext_resource type="Shader" path="res://Grass/Materials/SDR_Grass2.gdshader" id="1_1sus7"]
 
 [sub_resource type="Gradient" id="Gradient_nmy1a"]
-offsets = PackedFloat32Array(0, 0.552941, 1)
+offsets = PackedFloat32Array(0, 0.411765, 1)
 colors = PackedColorArray(0.251109, 0.515625, 0.237187, 1, 0.89, 0.88711, 0.213829, 1, 0.65, 0.233133, 0.169, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_xig6h"]
@@ -28,6 +28,21 @@ colors = PackedColorArray(1, 1, 1, 1, 0.898438, 0.898438, 0.898438, 1, 0.358998,
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_mjln3"]
 gradient = SubResource("Gradient_4ie45")
 
+[sub_resource type="Gradient" id="Gradient_t7mw7"]
+offsets = PackedFloat32Array(0, 0.938235, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.929412, 0.929412, 0.929412, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ryanh"]
+frequency = 0.0041
+fractal_lacunarity = 1.485
+fractal_gain = -1.36
+fractal_weighted_strength = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yjvng"]
+seamless = true
+color_ramp = SubResource("Gradient_t7mw7")
+noise = SubResource("FastNoiseLite_ryanh")
+
 [sub_resource type="Gradient" id="Gradient_y407w"]
 offsets = PackedFloat32Array(0, 0.85, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0.955882, 0.955882, 0.955882, 1, 1, 1, 1, 1)
@@ -51,10 +66,11 @@ noise = SubResource("FastNoiseLite_sov83")
 [resource]
 render_priority = 0
 shader = ExtResource("1_1sus7")
-shader_parameter/WindScroll = Vector2(1, 0)
+shader_parameter/WindScroll = Vector2(1, 1)
 shader_parameter/WindScrollSpeed = 0.06
 shader_parameter/WindStrength = 1.0
 shader_parameter/HeightColorGradient = SubResource("GradientTexture1D_mjln3")
 shader_parameter/ColorVariationGradient = SubResource("GradientTexture1D_xig6h")
 shader_parameter/ColorVariationNoise = SubResource("NoiseTexture2D_hvquu")
+shader_parameter/HeightVariatioNoise = SubResource("NoiseTexture2D_yjvng")
 shader_parameter/WindNoise = SubResource("NoiseTexture2D_r1q71")

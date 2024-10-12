@@ -13,7 +13,7 @@ public partial class GrassController : Node
 	Noise Noise;
 
 	const float RANDOMNESS = 1f;
-	const float GRID_SIZE = 40;
+	const float GRID_SIZE = 30;
 	const int GRASS_PER_GRID_LENGTH_MAX = 100; //100
 	const int GRASS_PER_GRID_LENGTH_MID = 50;
 	const int GRASS_PER_GRID_LENGTH_MIN = 25;
