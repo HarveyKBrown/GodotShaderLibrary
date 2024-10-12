@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvdq1uurpof6g"]
+
+[ext_resource type="Script" path="res://Scripts/BasicCharacter.cs" id="1_wyr8f"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jf4rj"]
+size = Vector3(1, 1.8, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r2ybf"]
+height = 1.8
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CameraPivot", "PlayerMesh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2.345, 10)
+script = ExtResource("1_wyr8f")
+CameraPivot = NodePath("CameraPivot")
+PlayerMesh = NodePath("PlayerMesh")
+
+[node name="PlayerMesh" type="CSGMesh3D" parent="."]
+mesh = SubResource("BoxMesh_jf4rj")
+
+[node name="PlayerColision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_r2ybf")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.978667, 0.205453, 0, -0.205453, 0.978667, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.993, 0, 5.03)
