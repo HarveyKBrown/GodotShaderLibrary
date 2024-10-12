@@ -34,7 +34,7 @@ colors = PackedColorArray(0, 0, 0, 1, 0.955882, 0.955882, 0.955882, 1, 1, 1, 1, 
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_sov83"]
 seed = 490
-frequency = 0.015
+frequency = 0.018
 fractal_type = 2
 fractal_octaves = 1
 fractal_lacunarity = 0.0
@@ -52,8 +52,8 @@ noise = SubResource("FastNoiseLite_sov83")
 render_priority = 0
 shader = ExtResource("1_1sus7")
 shader_parameter/WindScroll = Vector2(1, 0)
-shader_parameter/WindScrollSpeed = 0.1
-shader_parameter/WindStrength = 0.2
+shader_parameter/WindScrollSpeed = 0.06
+shader_parameter/WindStrength = 1.0
 shader_parameter/HeightColorGradient = SubResource("GradientTexture1D_mjln3")
 shader_parameter/ColorVariationGradient = SubResource("GradientTexture1D_xig6h")
 shader_parameter/ColorVariationNoise = SubResource("NoiseTexture2D_hvquu")

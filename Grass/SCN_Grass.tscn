@@ -62,9 +62,10 @@ generated_type = 1
 mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_a07y7")])
 
 [sub_resource type="BoxMesh" id="BoxMesh_jf4rj"]
-size = Vector3(1, 2, 1)
+size = Vector3(1, 1.8, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r2ybf"]
+height = 1.8
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_gibf6"]
 noise_type = 0
@@ -74,6 +75,7 @@ frequency = 1.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.85035, -0.169097, 0.498309, -0.301593, 0.619389, 0.724844, -0.431216, -0.766657, 0.475699, 0, 2.59808, 1.5)
+shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5cb8x")
