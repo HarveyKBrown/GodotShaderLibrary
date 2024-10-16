@@ -13,7 +13,7 @@ public partial class GrassController : Node
 	Noise Noise;
 
 	const float RANDOMNESS = 1f;
-	const float GRID_SIZE = 20;
+	const float GRID_SIZE = 10;
 	const int GRASS_PER_GRID_LENGTH_MAX = 100; //100
 	const int GRASS_PER_GRID_LENGTH_MID = 50;
 	const int GRASS_PER_GRID_LENGTH_MIN = 25;
@@ -33,11 +33,10 @@ public partial class GrassController : Node
 
 
 	//TODO LIST
-	// 2.1. Sampling terrain height
-	// 3.1. Queuing system for updating (single threaded, ie.. N per frame, time the code)
-	// 4. Custom instance data buffer (4, instead of 12 packed floats per instance)
-	// 5. Calculating the buffer in the compute shader
-	// 6. Calculate positions AND mesh data on the GPU, passing in a copy of the target mesh
+	// 1. Sampling terrain height
+	// 2. Compute Shader calculate buffer
+	// 3. Directly apply the compute shader buffer to the GPU pipeline (keep it all on the GPU)
+	// 4. Queuing system for updating (single threaded, ie.. N per frame, time the code)
 
 	// (Possible solution) Precompute terrain height data and store it for later use
 	// (Edge blending tip) Make grass shorter the further away from you
@@ -107,6 +106,7 @@ public partial class GrassController : Node
 			Vector3 gridPosition = new(column * subGridSize, 0, row * subGridSize);
 
 			//GrassMultiMesh.Multimesh.Buffer = *COMPUTE_SHADER_OUTPUT*
+			//See if I can bypass the CPU by binding the data directly on the GPU from the compute shader
 			GrassMultiMesh.Multimesh.SetInstanceTransform(i, new Transform3D(Basis.Identity, instanceRootPosition + noisePositionMod + gridPosition));
 		}
 		//TODO Apply AABB to multimesh for culling
